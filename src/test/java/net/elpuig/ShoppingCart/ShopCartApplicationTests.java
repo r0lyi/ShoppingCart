@@ -1,4 +1,4 @@
-package net.shopping.shopCart;
+package net.elpuig.ShoppingCart;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

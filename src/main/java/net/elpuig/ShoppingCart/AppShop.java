@@ -1,13 +1,13 @@
-package net.shopping.shopCart;
+package net.elpuig.ShoppingCart;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShopCartApplication {
+public class AppShop {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ShopCartApplication.class, args);
+		SpringApplication.run(AppShop.class, args);
 	}
 
 }
