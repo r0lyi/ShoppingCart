@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+<!-- Fragmento "header" -->
+<div th:fragment="header">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --hover-color: #3498db;
+            --text-color: #2c3e50;
+            --bg-color: #ffffff;
+            --transition-speed: 0.3s;
+        }
+
+        .nav-container {
+            background-color: var(--bg-color);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 4rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link i {
+            font-size: 1.3rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .nav-link:hover {
+            color: var(--hover-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover i {
+            color: var(--hover-color);
+        }
+
+        /* Subrayado animado */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--hover-color);
+            transition: all var(--transition-speed) ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .cart-counter {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-radius: 50%;
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .cart-counter:hover {
+            transform: scale(1.1);
+        }
+
+        /* Efecto de aparición para el contador */
+        @keyframes pop-in {
+            0% { transform: scale(0); }
+            90% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .cart-counter {
+            animation: pop-in 0.3s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                gap: 2rem;
+                flex-wrap: wrap;
+            }
+
+            .nav-link {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                gap: 0.5rem;
+            }
+
+            .cart-counter {
+                min-width: 20px;
+                height: 20px;
+                font-size: 0.75rem;
+                top: -10px;
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+
+            .nav-link i {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+
+    <div class="nav-container">
+        <nav>
+            <a class="nav-link" th:href="@{/}">
+                <i class="fas fa-home"></i> Lista de productos
+            </a>
+
+            <a class="nav-link" th:href="@{/carrito}">
+                <i class="fas fa-shopping-cart"></i> Carrito
+                <span th:if="${cartItemCount > 0}"
+                      class="cart-counter"
+                      th:text="${cartItemCount}"></span>
+            </a>
+        </nav>
+    </div>
+</div>
+</body>
+</html>
